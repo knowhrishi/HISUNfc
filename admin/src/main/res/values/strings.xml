@@ -12,6 +12,7 @@
     <string name="admin_tab_1">Scan User</string>
     <string name="admin_tab_2">Recent User</string>
     <string name="title_activity_add_user">AddUserActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
 
 
 </resources>
