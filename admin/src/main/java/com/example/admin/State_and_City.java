@@ -13,7 +13,7 @@ import java.util.List;
 
 public class State_and_City {
 
-   public static String url="http://192.168.0.101/Admin/";
+   public static String url="http://192.168.0.101/HRMS/";
 
    public static String[] TempState = {
             "Andhra Pradesh (AP)",
@@ -319,10 +319,6 @@ Spinner city=cit;
         } else if (str.equals("Arunachal Pradesh (AR)")) {
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(applicationContext, android.R.layout.simple_spinner_item, State_and_City.Arunachal_Pradesh_list);
             city.setAdapter(dataAdapter);
-
-
-
         }
     }
-
 }

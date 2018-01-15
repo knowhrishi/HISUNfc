@@ -38,13 +38,16 @@ public class Accepted_tab2 extends Fragment {
     public static int cnt, cnt1;
 
     public static String myJSON,patientNameSend_server="11223344";
-    /*tab 1*/  public static String RequestID[],PatientID[],DoctorID[],Description[],Accept[],ColumnName[],ColumnValue[],Type[];
+    /*tab 1*/  public static String FirstName[],AadharNo[],LastName[],
+            Address[],City[],State[],ContactNo[],MiddleName[], Email[],
+            Gender[], DOB[], RegTimestamp[], UserID[], Document[],
+            VerificationStatus[], VerifierID[], Type[],Description[], ID[];
       private ProgressDialog progress;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.accepted_tab2, container, false);
+        return inflater.inflate(R.layout.layout_accepted_tab2, container, false);
 
 
     }
@@ -53,7 +56,7 @@ public class Accepted_tab2 extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         lv = (ListView)view.findViewById(R.id.accepted_listview);
-        //Toast.makeText(getActivity(), "in onViewCreated", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "in onViewCreated", Toast.LENGTH_SHORT).show();
         getData();
     }
 
@@ -69,10 +72,10 @@ public class Accepted_tab2 extends Fragment {
                 DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
 
                     //httppost = new HttpPost(State_and_City.url + "pending.php?p_id=" + patientNameSend_server.replace(" ", "%20"));
-                httppost = new HttpPost(State_and_City.url + "accepted.php");
+                httppost = new HttpPost(State_and_City.url + "all_users.php");
 
                 // Depends on your web service
-                httppost.setHeader("Content-type", "application/json");
+                httppost.setHeader("Content-MiddleName", "application/json");
 
                 InputStream inputStream = null;
                 String result = null;
@@ -105,14 +108,15 @@ public class Accepted_tab2 extends Fragment {
             @Override
             protected void onPostExecute(String result){
                 try {
-                   // Toast.makeText(getActivity(), "MyJson: "+myJSON.toString(), Toast.LENGTH_SHORT).show();
+
 
                     myJSON=result;
+                    Toast.makeText(getActivity(), "MyJson: "+myJSON.toString(), Toast.LENGTH_SHORT).show();
                     showList();
 
                 }catch (Exception f){
 
-                    Toast.makeText(getActivity(), "error recive ::"+f, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Error Receive: "+f, Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -131,43 +135,70 @@ public class Accepted_tab2 extends Fragment {
                 cnt++;
             }
 
-                PatientID = new String[cnt];
-                RequestID = new String[cnt];
-                Type = new String[cnt];
-                DoctorID = new String[cnt];
-                Description = new String[cnt];
-                Accept = new String[cnt];
-                ColumnName = new String[cnt];
-                ColumnValue = new String[cnt];
+                AadharNo = new String[cnt];
+                FirstName = new String[cnt];
+                MiddleName = new String[cnt];
+                LastName = new String[cnt];
+                Address = new String[cnt];
+                City = new String[cnt];
+                State = new String[cnt];
+                ContactNo = new String[cnt];
 
+
+
+            Email = new String[cnt];
+            Gender = new String[cnt];
+            DOB = new String[cnt];
+            RegTimestamp = new String[cnt];
+            UserID = new String[cnt];
+            Document = new String[cnt];
+            VerificationStatus = new String[cnt];
+            VerifierID = new String[cnt];
+            Type = new String[cnt];
+            Description = new String[cnt];
+            ID = new String[cnt];
 
 
             for(int i=0;i<peoples.length();i++){
                 JSONObject c = peoples.getJSONObject(i);
 
-                //RequestID[cnt1]=c.getString("RequestID");
+                //FirstName[cnt1]=c.getString("FirstName");
 
-                    PatientID[cnt1] = c.getString("PatientID");
-                    RequestID[cnt1] = c.getString("RequestID");
-                    Type[cnt1] = c.getString("Type");
-                    DoctorID[cnt1] = c.getString("DoctorID");
-                    Description[cnt1] = c.getString("Description");
-                    Accept[cnt1] = c.getString("Accept");
-                    ColumnName[cnt1] = c.getString("ColumnName");
-                    ColumnValue[cnt1] = c.getString("ColumnValue");
+                    AadharNo[cnt1] = c.getString("AadharNo");
+                    FirstName[cnt1] = c.getString("FirstName");
+                    MiddleName[cnt1] = c.getString("MiddleName");
+                    LastName[cnt1] = c.getString("LastName");
+                    Address[cnt1] = c.getString("Address");
+                    City[cnt1] = c.getString("City");
+                    State[cnt1] = c.getString("State");
+                ContactNo[cnt1] = c.getString("ContactNo");
+
+                Email[cnt1] = c.getString("Email");
+                Gender[cnt1] = c.getString("Gender");
+                DOB[cnt1] = c.getString("DOB");
+                RegTimestamp[cnt1] = c.getString("RegTimestamp");
+                UserID[cnt1] = c.getString("UserID");
+                Document[cnt1] = c.getString("Document");
+                VerificationStatus[cnt1] = c.getString("VerificationStatus");
+                VerifierID[cnt1] = c.getString("VerifierID");
+                Type[cnt1] = c.getString("Type");
+                Description[cnt1] = c.getString("Description");
+                ID[cnt1] = c.getString("ID");
+
+                Toast.makeText(getActivity(), "ID "+ID[i], Toast.LENGTH_SHORT).show();
 
                 cnt1++;
             }
             // setTitle(patientNameF[0]+" "+patientNameL[0]);
           //  setTitle("sfse1");
+//aa
 
-
-                layout_accepted a = new layout_accepted(getActivity(), RequestID, DoctorID, Description, Accept, ColumnName, ColumnValue, Type);
+                layout_accepted a = new layout_accepted(getActivity(), FirstName, LastName, Address, City, State, ContactNo, MiddleName);
                 lv.setAdapter(a);
 
 
             if(cnt==0) {
-                Toast.makeText(getActivity(), "Nothing to show in Accepted", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Nothing to show in Cityed", Toast.LENGTH_LONG).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();

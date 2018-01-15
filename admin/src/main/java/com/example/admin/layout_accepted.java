@@ -24,7 +24,7 @@ public class layout_accepted extends ArrayAdapter<String> {
 
 
    public layout_accepted(Activity context, String[]RequestID, String[]PatientID, String[]Description, String[]Accept, String[]ColumnName, String[]ColumnValue, String[]Type){
-        super(context, R.layout.accepted_tab2,RequestID);
+        super(context, R.layout.layout_accepted_tab2,RequestID);
 
        this.context=context;
        this.RequestID=RequestID;
